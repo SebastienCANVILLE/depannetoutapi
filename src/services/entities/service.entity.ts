@@ -17,10 +17,10 @@ export class Service extends BaseEntity{
     @Column()
     city: string;
 
-    @Column()
+    @Column({type : "timestamptz"})
     start_time: Date;
 
-    @Column()
+    @Column({type : "timestamptz"})
     end_time: Date;
 
     @Column()
@@ -30,7 +30,7 @@ export class Service extends BaseEntity{
     users: User[];
     
     @OneToOne(() => Reservation, service => service.reservations)
-    reservations: any;
+    reservations: Reservation;
     
 
 
