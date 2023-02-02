@@ -1,5 +1,6 @@
 import { UserRoleEnum } from 'src/enum/user-role.enum';
-import { Reservation } from 'src/reservations/reservations.service';
+import { Reservation } from 'src/reservations/entities/reservation.entity';
+import { ReservationsService } from 'src/reservations/reservations.service';
 import { Service } from 'src/services/entities/service.entity';
 import { Entity, Column, PrimaryGeneratedColumn, BaseEntity, OneToMany } from 'typeorm';
 
@@ -47,10 +48,10 @@ export class User extends BaseEntity {
     })
     role: string;
 
-    @OneToMany(() => Service, service => service.user)
+    @OneToMany(() => Service, service => service.users)
     services: Service[]
 
-    @OneToMany(() => Reservation, reservation => reservation.user)
+    @OneToMany(() => Reservation, reservation => reservation.users)
     reservations: Reservation[]
 
 }
