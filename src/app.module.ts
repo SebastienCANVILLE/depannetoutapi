@@ -8,6 +8,9 @@ import { AuthModule } from './auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { DataSource } from 'typeorm';
+import { User } from './users/entities/user.entity';
+import { Reservation } from './reservations/entities/reservation.entity';
+import { Service } from './services/entities/service.entity';
 
 @Module({
   imports: [UsersModule, ServicesModule, ReservationsModule, AuthModule,
@@ -19,8 +22,8 @@ import { DataSource } from 'typeorm';
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      entities: [],
-      synchronize: false,
+      entities: [User, Reservation, Service],
+      synchronize: true,
       logging: false
     }),],
   controllers: [AppController],

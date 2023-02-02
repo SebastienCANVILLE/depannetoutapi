@@ -13,6 +13,8 @@ export class Reservation extends BaseEntity {
     @OneToOne(()=>Service, service => service.reservations)
     reservations: Reservation[]
     
-    @ManyToOne(() => User, (user) => user.reservations)
-    services: Service[];
+    @ManyToOne(() => User, user => user.reservations)
+        users: User
+    //services: Service[];
+    // users: any;
 }

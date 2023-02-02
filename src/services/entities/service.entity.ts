@@ -1,10 +1,13 @@
+import { Reservation } from "src/reservations/entities/reservation.entity";
 import { User } from "src/users/entities/user.entity";
-import { BaseEntity, Column, Entity, OneToMany, Timestamp } from "typeorm";
+import { BaseEntity, Column, Entity, OneToMany, Timestamp, PrimaryGeneratedColumn, OneToOne } from "typeorm";
 
 
 @Entity()
 export class Service extends BaseEntity{
-    
+    @PrimaryGeneratedColumn()
+    id: number;
+
     @Column()
     name: string;
 
@@ -15,17 +18,19 @@ export class Service extends BaseEntity{
     city: string;
 
     @Column()
-    start_time: Timestamp;
-
+    start_time: Date;
 
     @Column()
-    end_time: Timestamp;
+    end_time: Date;
 
     @Column()
     reserved: boolean;
 
-    @OneToMany(() => User, user => user.service)
-    users: User []
+    @OneToMany(() => User, user => user.services)
+    users: User[];
+    
+    @OneToOne(() => Reservation, service => service.reservations)
+    reservations: any;
     
 
 
