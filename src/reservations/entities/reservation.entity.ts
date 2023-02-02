@@ -14,7 +14,8 @@ export class Reservation extends BaseEntity {
     reservations: Reservation[]
     
     @ManyToOne(() => User, user => user.reservations)
-        users: User
+    users: User
+    
     //services: Service[];
     // users: any;
 }
