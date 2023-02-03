@@ -9,7 +9,7 @@ export class CreateServiceDto {
     @IsString()
     @IsNotEmpty()
     name: string;
-
+    
     @IsNotEmpty()
     price: number
 

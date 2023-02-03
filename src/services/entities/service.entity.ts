@@ -1,6 +1,6 @@
 import { Reservation } from "src/reservations/entities/reservation.entity";
 import { User } from "src/users/entities/user.entity";
-import { BaseEntity, Column, Entity, OneToMany, Timestamp, PrimaryGeneratedColumn, OneToOne } from "typeorm";
+import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn, OneToOne } from "typeorm";
 
 
 @Entity()

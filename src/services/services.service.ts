@@ -12,7 +12,7 @@ export class ServicesService extends BaseEntity  {
   }
 
   async findOneByName(name:string) {
-    return await Service.findOneBy({name}) ;
+    return await Service.findOneBy({name : name}) ;
   }
 
    async create(createServiceDto: CreateServiceDto) {
@@ -20,11 +20,30 @@ export class ServicesService extends BaseEntity  {
   } 
 
   async update(id: number, updateServiceDto: UpdateServiceDto) {
-    return await Service.update(+id, updateServiceDto);
+    const service = await Service.findOneBy({ id: id });
+    if (service) {
+      if (updateServiceDto.name) {
+        service.name = updateServiceDto.name
+      }
+      if (updateServiceDto.price) {
+        service.price = updateServiceDto.price
+      }
+      if (updateServiceDto.city) {
+        service.city = updateServiceDto.city
+      }
+      if (updateServiceDto.start_time) {
+        service.start_time = updateServiceDto.start_time
+      }
+      if (updateServiceDto.end_time) {
+        service.end_time = updateServiceDto.end_time
+      }
+      return await service.save()
+    }
+    return null
   }
 
-  async delete(id: number, name:string) {
-    return await Service.delete({id, name});
+  async delete(id: number) {
+    return await Service.delete({id});
   }
 
 } 

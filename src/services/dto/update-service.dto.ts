@@ -1,28 +1,30 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { IsDate, IsNotEmpty, IsString } from 'class-validator';
-import { CreateServiceDto } from './create-service.dto';
 
-export class UpdateServiceDto extends PartialType(CreateServiceDto) {
-    @IsNotEmpty()
-    id: number;
+import { IsDate, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
+export class UpdateServiceDto {
+  
     @IsString()
     @IsNotEmpty()
+    @IsOptional()
     name: string;
 
     @IsNotEmpty()
+    @IsOptional()
     price: number
 
 
     @IsString()
     @IsNotEmpty()
+    @IsOptional()
     city: string;
 
     @IsDate()
     @IsNotEmpty()
+    @IsOptional()
     start_time: Date;
 
     @IsDate()
     @IsNotEmpty()
+    @IsOptional()
     end_time: Date;
 }

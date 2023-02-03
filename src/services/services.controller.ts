@@ -18,19 +18,25 @@ export class ServicesController {
     return this.servicesService.findAll();
   }
 
-  @Get()
-  findOne(@Param() name: string) {
+  @Get(':name')
+  findOne(@Param('name') name: string) {
+    
     return this.servicesService.findOneByName(name);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateServiceDto: UpdateServiceDto) {
-    return this.servicesService.update(+id, updateServiceDto);
+  async update(@Param('id') id: string, @Body() updateServiceDto: UpdateServiceDto) {
+    const service = await this.servicesService.update(+id, updateServiceDto);
+    if (!service) {
+      return "pas d'id correspondant"
+      //throw new 
+    }
+    return service;
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.servicesService.remove( )
+ async remove(@Param('id') id: string) {
+    return await this.servicesService.delete(+id)
   } 
 } 
 
