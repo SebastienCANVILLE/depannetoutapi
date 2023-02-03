@@ -30,7 +30,7 @@ export class ServicesController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.servicesService.remove()
+    return this.servicesService.remove( )
   } 
 } 
 
