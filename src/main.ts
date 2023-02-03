@@ -8,6 +8,9 @@ async function bootstrap() {
     whitelist: true,
     // rejette les requêtes qui contiennent des champs non déclaré dans la dto
     forbidNonWhitelisted: true, 
+
+    transform: true
+    //permet la transformation format date
   }));
   await app.listen(3000);
 }

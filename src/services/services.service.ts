@@ -1,26 +1,31 @@
 import { Injectable } from '@nestjs/common';
+import { BaseEntity } from 'typeorm';
 import { CreateServiceDto } from './dto/create-service.dto';
 import { UpdateServiceDto } from './dto/update-service.dto';
+import { Service } from './entities/service.entity';
 
 @Injectable()
-export class ServicesService {
-  create(createServiceDto: CreateServiceDto) {
-    return 'This action adds a new service';
+export class ServicesService extends BaseEntity  {
+
+  async findAll() {
+    return await Service.find ();
   }
 
-  findAll() {
-    return `This action returns all services`;
+  async findOneByName(name:string) {
+    return await Service.findOneBy({name}) ;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} service`;
+   async create(createServiceDto: CreateServiceDto) {
+    return await Service.create({...createServiceDto}).save();
+  } 
+
+  async update(id: number, updateServiceDto: UpdateServiceDto) {
+    return await Service.update(+id, updateServiceDto);
   }
 
-  update(id: number, updateServiceDto: UpdateServiceDto) {
-    return `This action updates a #${id} service`;
+  async delete(id: number, name:string) {
+    return await Service.delete({id, name});
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} service`;
-  }
-}
+} 
+ 

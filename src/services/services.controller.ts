@@ -1,9 +1,10 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Patch, Delete,  } from '@nestjs/common';
+
 import { ServicesService } from './services.service';
 import { CreateServiceDto } from './dto/create-service.dto';
 import { UpdateServiceDto } from './dto/update-service.dto';
 
-@Controller('services')
+ @Controller('services')
 export class ServicesController {
   constructor(private readonly servicesService: ServicesService) {}
 
@@ -17,9 +18,9 @@ export class ServicesController {
     return this.servicesService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.servicesService.findOne(+id);
+  @Get()
+  findOne(@Param() name: string) {
+    return this.servicesService.findOneByName(name);
   }
 
   @Patch(':id')
@@ -29,6 +30,8 @@ export class ServicesController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.servicesService.remove(+id);
-  }
-}
+    return this.servicesService.remove( )
+  } 
+} 
+
+

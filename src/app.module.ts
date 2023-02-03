@@ -12,8 +12,9 @@ import { User } from './users/entities/user.entity';
 import { Reservation } from './reservations/entities/reservation.entity';
 import { Service } from './services/entities/service.entity';
 
+
 @Module({
-  imports: [UsersModule, ServicesModule, ReservationsModule, AuthModule,
+  imports: [
     ConfigModule.forRoot(), 
     TypeOrmModule.forRoot({  
       type: "postgres",
@@ -24,8 +25,9 @@ import { Service } from './services/entities/service.entity';
       database: process.env.DB_NAME,
       entities: [User, Reservation, Service],
       synchronize: true,
-      logging: false
-    }),],
+      logging: true
+    }),
+    UsersModule, ServicesModule, ReservationsModule, AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })

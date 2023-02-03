@@ -4,34 +4,35 @@ import { BaseEntity, Column, Entity, OneToMany, Timestamp, PrimaryGeneratedColum
 
 
 @Entity()
-export class Service extends BaseEntity{
+export class Service extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column()
     name: string;
 
-    @Column({type:'money'})
+    @Column({ type: 'money' })
     price: number
 
     @Column()
     city: string;
 
-    @Column({type : "timestamptz"})
+    @Column({ type: "timestamptz" })
     start_time: Date;
 
-    @Column({type : "timestamptz"})
+    @Column({ type: "timestamptz" })
     end_time: Date;
 
-    @Column()
+    @Column({ default: false})
+   
     reserved: boolean;
 
     @OneToMany(() => User, user => user.services)
     users: User[];
-    
+
     @OneToOne(() => Reservation, service => service.reservations)
     reservations: Reservation;
-    
+
 
 
 }
