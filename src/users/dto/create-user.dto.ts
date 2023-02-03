@@ -16,6 +16,10 @@ export class CreateUserDto {
 
     @IsNotEmpty()
     @IsString()
+    password_confirm: string;
+
+    @IsNotEmpty()
+    @IsString()
     adress_line1: string;
 
     @IsString()
