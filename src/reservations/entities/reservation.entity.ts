@@ -10,10 +10,10 @@ export class Reservation extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @OneToOne(()=>Service, service => service.reservations)
+    @OneToOne(()=>Service, service => service.reservations,{onDelete:'CASCADE'})
     reservations: Reservation[]
     
-    @ManyToOne(() => User, user => user.reservations)
+    @ManyToOne(() => User, user => user.reservations, {onDelete:'CASCADE'})
     users: User
     
     //services: Service[];
