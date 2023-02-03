@@ -4,7 +4,6 @@ import { Entity, PrimaryGeneratedColumn, BaseEntity, OneToOne, ManyToOne,  } fro
 
 
 @Entity()
-
 export class Reservation extends BaseEntity { 
 
     @PrimaryGeneratedColumn()
@@ -16,6 +15,4 @@ export class Reservation extends BaseEntity {
     @ManyToOne(() => User, user => user.reservations)
     users: User
     
-    //services: Service[];
-    // users: any;
 }
