@@ -12,7 +12,7 @@ export class Reservation extends BaseEntity {
     @OneToOne(()=>Service, service => service.reservations,{onDelete:'CASCADE'})
     reservations: Reservation[]
     
-    @ManyToOne(() => User, user => user.reservations, {onDelete:'CASCADE'})
-    users: User
+    @ManyToOne(() => User, user => user.reservations, { onDelete: 'CASCADE' })
+    users: User;
     
 }

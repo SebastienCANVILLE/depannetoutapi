@@ -1,23 +1,26 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { BaseEntity } from 'typeorm';
 import { CreateServiceDto } from './dto/create-service.dto';
 import { UpdateServiceDto } from './dto/update-service.dto';
 import { Service } from './entities/service.entity';
 
 @Injectable()
-export class ServicesService extends BaseEntity  {
-
+export class ServicesService extends BaseEntity {
+  
   async findAll() {
-    return await Service.find ();
+    return await Service.find();
   }
 
-  async findOneByName(name:string) {
-    return await Service.findOneBy({name : name}) ;
+  async findBy(name: string) {
+   //const service = await Service.findOneBy({ name: name });
+
+   return await Service.findBy({name:name});
+   // return name
   }
 
-   async create(createServiceDto: CreateServiceDto) {
-    return await Service.create({...createServiceDto}).save();
-  } 
+  async create(createServiceDto: CreateServiceDto) {
+    return await Service.create({ ...createServiceDto }).save();
+  }
 
   async update(id: number, updateServiceDto: UpdateServiceDto) {
     const service = await Service.findOneBy({ id: id });
@@ -43,8 +46,13 @@ export class ServicesService extends BaseEntity  {
   }
 
   async delete(id: number) {
-    return await Service.delete({id});
+    const dataDeleted = await Service.findOneBy({ id })
+    await Service.delete({ id });
+    if (dataDeleted) {
+      return dataDeleted;
+    }
+    return undefined;
   }
 
-} 
- 
+}
+

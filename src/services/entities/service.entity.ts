@@ -5,6 +5,7 @@ import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn, OneToOne
 
 @Entity()
 export class Service extends BaseEntity {
+  
     @PrimaryGeneratedColumn()
     id: number;
 
