@@ -22,6 +22,12 @@ export class UsersController {
     return this.usersService.findOne(+id);
   }
 
+  @Get('search/:username')
+  async findByName(@Param('username') username: string) {    
+    return await this.usersService.findByName(username);
+  }
+
+
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.usersService.remove(+id);

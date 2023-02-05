@@ -25,7 +25,7 @@ import { Service } from './services/entities/service.entity';
       database: process.env.DB_NAME,
       entities: [User, Reservation, Service],
       synchronize: true,
-      logging: true
+      logging: false
     }),
     UsersModule, ServicesModule, ReservationsModule, AuthModule],
   controllers: [AppController],
