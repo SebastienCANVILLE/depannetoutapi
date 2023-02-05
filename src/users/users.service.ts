@@ -17,6 +17,7 @@ export class UsersService {
     user.password = await bcrypt.hash(createUserDto.password, user.salt);
     await user.save()
     delete user.password
+    delete user.salt
     return user
     
   }
